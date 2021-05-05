@@ -1,0 +1,3 @@
+[submodule "heroes-app_front-end"]
+	path = heroes-app_front-end
+	url = https://github.com/LeiteSS/heroes-app_front-end.git

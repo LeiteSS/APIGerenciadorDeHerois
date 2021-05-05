@@ -1,34 +1,34 @@
-package lab.aulaDIO.HeroesManager.document;
+package io.github.leitess.HeroesManager.document;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import org.springframework.data.annotation.Id;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-@DynamoDBTable(tableName = "Heroes_Table")
+@Document(collection = "heroes")
 public class Heroes {
 
     @Id
-    @DynamoDBHashKey(attributeName = "id")
-    private String id;
+    private ObjectId id;
 
-    @DynamoDBAttribute(attributeName = "name")
     private String name;
 
-    @DynamoDBAttribute(attributeName = "universe")
     private String universe;
 
-    @DynamoDBAttribute(attributeName = "films")
-    private int films;
+    private String story;
 
-    public Heroes(String id, String name, String universe, int films) {
-        this.id = id;
-        this.name = name;
-        this.universe = universe;
-        this.films = films;
-    }
+    private String city;
+
+    private String mainImageUrl;
+
+    private String authorName;
+
+    private String authorImageUrl;
 }

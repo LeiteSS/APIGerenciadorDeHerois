@@ -1,4 +1,4 @@
-package lab.aulaDIO.HeroesManager.constans;
+package io.github.leitess.HeroesManager.constans;
 
 public class HeroesConstant {
     public static final String HEROES_ENDPOINT_LOCAL="/heroes";

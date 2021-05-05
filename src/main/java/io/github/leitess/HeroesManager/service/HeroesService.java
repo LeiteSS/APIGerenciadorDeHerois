@@ -1,32 +1,32 @@
-package lab.aulaDIO.HeroesManager.service;
+package io.github.leitess.HeroesManager.service;
 
-import lab.aulaDIO.HeroesManager.document.Heroes;
-import lab.aulaDIO.HeroesManager.repository.HeroesRepository;
+import io.github.leitess.HeroesManager.document.Heroes;
+import io.github.leitess.HeroesManager.repository.HeroesRepository;
+import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HeroesService {
     private final HeroesRepository heroesRepository;
 
-    public HeroesService(HeroesRepository heroesRepository) {
-        this.heroesRepository=heroesRepository;
-    }
-
     public Flux<Heroes> findAll() {
-        return Flux.fromIterable(this.heroesRepository.findAll());
+        return this.heroesRepository.findAll();
     }
 
-    public Mono<Heroes> findById(String id) {
-        return Mono.justOrEmpty(this.heroesRepository.findById(id));
+    public Mono<Heroes> findById(ObjectId id) {
+        return this.heroesRepository.findById(id);
     }
 
     public Mono<Heroes> save(Heroes heroes) {
-        return Mono.justOrEmpty(this.heroesRepository.save(heroes));
+        return this.heroesRepository.save(heroes);
     }
 
-    public Mono<Boolean> deleteById(String id) {
+    public Mono<Boolean> deleteById(ObjectId id) {
         heroesRepository.deleteById(id);
         return Mono.just(true);
     }

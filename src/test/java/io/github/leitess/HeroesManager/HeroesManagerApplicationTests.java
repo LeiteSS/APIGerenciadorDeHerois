@@ -1,6 +1,7 @@
-package lab.aulaDIO.HeroesManager;
+package io.github.leitess.HeroesManager;
 
-import lab.aulaDIO.HeroesManager.repository.HeroesRepository;
+import io.github.leitess.HeroesManager.constans.HeroesConstant;
+import io.github.leitess.HeroesManager.repository.HeroesRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import static lab.aulaDIO.HeroesManager.constans.HeroesConstant.HEROES_ENDPOINT_LOCAL;
 
 @RunWith(SpringRunner.class)
 @DirtiesContext
@@ -28,7 +27,7 @@ class HeroesManagerApplicationTests {
 	@Test
 	void whenGetOneHeroById() {
 		
-		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), "1")
+		webTestClient.get().uri(HeroesConstant.HEROES_ENDPOINT_LOCAL.concat("/{id}"), "1")
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody();
@@ -37,7 +36,7 @@ class HeroesManagerApplicationTests {
 	@Test
 	void whenGetOneHeroNotFound() {
 
-		webTestClient.get().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), "3")
+		webTestClient.get().uri(HeroesConstant.HEROES_ENDPOINT_LOCAL.concat("/{id}"), "3")
 				.exchange()
 				.expectStatus().isNotFound();
 	}
@@ -45,7 +44,7 @@ class HeroesManagerApplicationTests {
 	@Test
 	void whenDeleteHero() {
 
-		webTestClient.delete().uri(HEROES_ENDPOINT_LOCAL.concat("/{id}"), "4")
+		webTestClient.delete().uri(HeroesConstant.HEROES_ENDPOINT_LOCAL.concat("/{id}"), "4")
 				.accept(MediaType.APPLICATION_JSON)
 				.exchange()
 				.expectStatus().isNotFound()

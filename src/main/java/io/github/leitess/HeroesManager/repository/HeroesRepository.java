@@ -1,8 +1,11 @@
-package lab.aulaDIO.HeroesManager.repository;
+package io.github.leitess.HeroesManager.repository;
 
-import lab.aulaDIO.HeroesManager.document.Heroes;
-import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
+import io.github.leitess.HeroesManager.document.Heroes;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-@EnableScan
-public interface HeroesRepository extends CrudRepository<Heroes, String> { }
+@Repository
+public interface HeroesRepository extends ReactiveMongoRepository<Heroes, ObjectId> {
+}

@@ -36,10 +36,10 @@ public class HeroesResource {
         return heroesService.findAll();
     }
 
-    @GetMapping("/heroes/{id}")
-    public Mono<ResponseEntity<Heroes>> findById(@PathVariable ObjectId id) {
-        log.info("Requesqting the hero with id {}.", id);
-        return heroesService.findById(id)
+    @GetMapping("/heroes/{name}")
+    public Mono<ResponseEntity<Heroes>> findByName(@PathVariable String name) {
+        log.info("Requesqting the hero with name {}.", name);
+        return heroesService.findByName(name)
                 .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

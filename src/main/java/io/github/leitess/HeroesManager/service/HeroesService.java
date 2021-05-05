@@ -18,8 +18,8 @@ public class HeroesService {
         return this.heroesRepository.findAll();
     }
 
-    public Mono<Heroes> findById(ObjectId id) {
-        return this.heroesRepository.findById(id);
+    public Mono<Heroes> findByName(String name) {
+        return this.heroesRepository.findByName(name);
     }
 
     public Mono<Heroes> save(Heroes heroes) {

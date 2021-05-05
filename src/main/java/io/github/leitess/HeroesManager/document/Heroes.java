@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Heroes {
 
     @Id
-    private ObjectId id;
+    private ObjectId _id;
 
     private String name;
 

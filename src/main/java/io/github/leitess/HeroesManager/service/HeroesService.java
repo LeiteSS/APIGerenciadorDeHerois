@@ -18,16 +18,15 @@ public class HeroesService {
         return this.heroesRepository.findAll();
     }
 
-    public Mono<Heroes> findByName(String name) {
-        return this.heroesRepository.findByName(name);
+    public Mono<Heroes> findById(ObjectId _id) {
+        return this.heroesRepository.findById(_id);
     }
 
     public Mono<Heroes> save(Heroes heroes) {
         return this.heroesRepository.save(heroes);
     }
 
-    public Mono<Boolean> deleteById(ObjectId id) {
-        heroesRepository.deleteById(id);
-        return Mono.just(true);
+    public void deleteById(ObjectId _id) {
+        heroesRepository.deleteById(_id);
     }
 }

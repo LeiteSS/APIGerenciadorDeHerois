@@ -36,10 +36,10 @@ public class HeroesResource {
         return heroesService.findAll();
     }
 
-    @GetMapping("/heroes/{name}")
-    public Mono<ResponseEntity<Heroes>> findByName(@PathVariable String name) {
-        log.info("Requesqting the hero with name {}.", name);
-        return heroesService.findByName(name)
+    @GetMapping("/heroes/{_id}")
+    public Mono<ResponseEntity<Heroes>> findById(@PathVariable ObjectId _id) {
+        log.info("Requesqting the hero with name {}.", _id);
+        return heroesService.findById(_id)
                 .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -51,11 +51,10 @@ public class HeroesResource {
         return heroesService.save(heroes);
     }
 
-    @DeleteMapping("/heroes/{id}")
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public Mono<HttpStatus> deleteById(@PathVariable ObjectId id) {
-        heroesService.deleteById(id);
-        log.info("Delete a hero with id {}", id);
-        return Mono.just(HttpStatus.NOT_FOUND);
+    @DeleteMapping("/heroes/{_id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable ObjectId _id) {
+        heroesService.deleteById(_id);
+        log.info("Delete a hero with id {}", _id);
     }
 }

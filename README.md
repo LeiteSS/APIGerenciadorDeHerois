@@ -12,7 +12,7 @@ A bunch of nerds want to manager posts about heroes. It must to possible to crea
 ### To - Do
 
 - [ ] Delete hero using  its Id.
-- [ ] Find a hero using its id.
+- [X] Find a hero using its id.
 - [ ] Update a hero.
 
 ## Usage

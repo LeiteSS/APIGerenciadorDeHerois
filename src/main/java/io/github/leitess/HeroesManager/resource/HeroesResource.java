@@ -22,7 +22,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("https://app-for-heroes.netlify.app/")
 @RequestMapping("/api/v1")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HeroesResource {

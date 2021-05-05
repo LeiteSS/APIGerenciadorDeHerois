@@ -1,4 +1,4 @@
-package lab.aulaDIO.HeroesManager.config;
+package io.github.leitess.HeroesManager.config.dynamo;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;

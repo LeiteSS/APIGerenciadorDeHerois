@@ -1,18 +1,26 @@
-package lab.aulaDIO.HeroesManager.controller;
+package io.github.leitess.HeroesManager.controller;
 
-import lab.aulaDIO.HeroesManager.document.Heroes;
-import lab.aulaDIO.HeroesManager.repository.HeroesRepository;
-import lab.aulaDIO.HeroesManager.service.HeroesService;
-import lombok.extern.slf4j.Slf4j;
+import io.github.leitess.HeroesManager.constans.HeroesConstant;
+import io.github.leitess.HeroesManager.document.Heroes;
+import io.github.leitess.HeroesManager.service.HeroesService;
+import io.github.leitess.HeroesManager.repository.HeroesRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import static lab.aulaDIO.HeroesManager.constans.HeroesConstant.HEROES_ENDPOINT_LOCAL;
-
 @RestController
+@CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/v1/heroes")
 public class HeroesController {
     HeroesService heroesService;
     HeroesRepository heroesRepository;
@@ -22,13 +30,13 @@ public class HeroesController {
         this.heroesRepository = heroesRepository;
         this.heroesService = heroesService;
     }
-    @GetMapping(HEROES_ENDPOINT_LOCAL)
+    @GetMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL)
     public Flux<Heroes> getAllItems() {
         log.info("Requesting the list off all heroes.");
         return heroesService.findAll();
     }
 
-    @GetMapping(HEROES_ENDPOINT_LOCAL+"/id")
+    @GetMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL+"/id")
     public Mono<ResponseEntity<Heroes>> findById(@PathVariable String id) {
         log.info("Requesqting the hero with id {}.", id);
         return heroesService.findById(id)
@@ -36,14 +44,14 @@ public class HeroesController {
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping(HEROES_ENDPOINT_LOCAL)
+    @PostMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Mono<Heroes> create(@RequestBody Heroes heroes) {
         log.info("A new hero was created.");
         return heroesService.save(heroes);
     }
 
-    @DeleteMapping(HEROES_ENDPOINT_LOCAL+"/id")
+    @DeleteMapping(HeroesConstant.HEROES_ENDPOINT_LOCAL+"/id")
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public Mono<HttpStatus> deleteById(@PathVariable String id) {
         heroesService.deleteById(id);
